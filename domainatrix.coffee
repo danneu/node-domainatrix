@@ -2,7 +2,7 @@ fs = require "fs"
 urlParser = require "url"
 cl = console.log
 
-String::reverse = -> @.split("").reverse().join("")
+String::reverse = (delimiter="") -> @.split(delimiter).reverse().join(delimiter)
 
 class DomainParser
   constructor: (fileName) ->
@@ -81,7 +81,7 @@ class Url
 
   buildCanonical: ->
     sets = [@publicSuffix, @domain, @subdomain]
-    (set?.split(".").reverse().join(".") for set in sets).join(".").concat @path
+    (set?.reverse(".") for set in sets).join(".").concat @path
     
 
   domain_with_public_suffix: ->

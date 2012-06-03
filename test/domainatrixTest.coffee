@@ -5,8 +5,10 @@ domainatrix = require "../domainatrix"
 
 describe "String methods", ->
   describe ".reverse()", ->
-    it "reverses the string", ->
-      assert.equal "olleh", "hello".reverse()
+    it "reverses the string when given no split", ->
+      assert.equal "hello".reverse(), "olleh"
+    it "reverses the string at split given in", ->
+      assert.equal "dot.com.co.uk".reverse("."), "uk.co.com.dot"
 
 describe "DomainParser", ->
   fileName = "#{__dirname}/test.dat"
