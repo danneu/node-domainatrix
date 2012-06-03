@@ -1,0 +1,29 @@
+{
+  "name": "node-domainatrix",
+  "version": "0.0.1",
+  "author": "Dan Neumann <danrodneu@gmail.com>",
+  "description": "parses urls into their domain parts, canonical url, and public suffix domain using a comprehensive list (ported to JS from pauldix's Ruby Gem)",
+  "scripts": {
+    "test": "vows --spec --isolate"
+  },
+  "main": "./lib/domainatrix",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danneu/node-domainatrix.git"
+  },
+  "keywords": [
+    "url",
+    "parsing",
+    "suffix"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "~1.0.3",
+    "mocha": "~1.1.0"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.4"
+  }
+}
