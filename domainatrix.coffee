@@ -81,12 +81,12 @@ class Url
 
   buildCanonical: ->
     sets = [@publicSuffix, @domain, @subdomain]
-    (set?.reverse(".") for set in sets).join(".").concat @path
-    
+    canonical = (set.reverse(".") for set in sets when set isnt "").join(".") 
+    canonical += @path unless @path is "/"
+    canonical
 
   domain_with_public_suffix: ->
     (part for part in [@domain, @public_suffix] when part isnt "").join(".")
-    
 
 
 fileName = "#{__dirname}/effective_tld_names.dat"

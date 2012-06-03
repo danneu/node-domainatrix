@@ -25,12 +25,31 @@ describe "DomainParser", ->
       assert.deepEqual domainParser.readDatFile(fileName), correctHash
 
 describe "Domainatrix", ->
-  url = "http://user:pass@foo.bar.lol.pauldiz.co.uk:3000/a/b/c/index.html?q=arg&hello=world"
-  uri = domainatrix.parse url
 
   describe ".parse(url)", ->
-    it "has all correct properties", ->
+    it "has all its necessary properties", ->
+      url = "http://user:pass@foo.bar.lol.pauldiz.co.uk:3000/a/b/c/index.html?q=arg&hello=world"
+      uri = domainatrix.parse url
       # from node-url
+      assert.property uri, "auth"
+      assert.property uri, "host" 
+      assert.property uri, "hostname" 
+      assert.property uri, "href" 
+      assert.property uri, "path" 
+      assert.property uri, "pathname" 
+      assert.property uri, "port" 
+      assert.property uri, "protocol" 
+      assert.property uri, "query" 
+      assert.property uri, "search" 
+      # from ruby domainatrix
+      assert.property uri, "canonical" 
+      assert.property uri, "domain" 
+      assert.property uri, "publicSuffix" 
+      assert.property uri, "subdomain" 
+
+    it "correctly handles a superficially comprehensive-looking example", ->
+      url = "http://user:pass@foo.bar.lol.pauldiz.co.uk:3000/a/b/c/index.html?q=arg&hello=world"
+      uri = domainatrix.parse url
       assert.propertyVal uri, "auth",     "user:pass"
       assert.propertyVal uri, "host",     "foo.bar.lol.pauldiz.co.uk:3000"
       assert.propertyVal uri, "hostname", "foo.bar.lol.pauldiz.co.uk"
@@ -41,9 +60,20 @@ describe "Domainatrix", ->
       assert.propertyVal uri, "protocol", "http:"
       assert.propertyVal uri, "query",    "q=arg&hello=world"
       assert.propertyVal uri, "search",   "?q=arg&hello=world"
-
-      # from ruby domainatrix
       assert.propertyVal uri, "canonical",    "uk.co.pauldiz.lol.bar.foo/a/b/c/index.html?q=arg&hello=world"  
       assert.propertyVal uri, "domain",       "pauldiz"
       assert.propertyVal uri, "publicSuffix", "co.uk"
       assert.propertyVal uri, "subdomain",    "foo.bar.lol"
+
+    it "properly builds canonical", ->
+      assert.equal domainatrix.parse("http://pauldix.net").canonical, "net.pauldix"
+      assert.equal domainatrix.parse("http://pauldix.net/foo.html").canonical, "net.pauldix/foo.html"
+      assert.equal domainatrix.parse("http://pauldix.net/foo.html?asdf=bar").canonical, "net.pauldix/foo.html?asdf=bar"
+      assert.equal domainatrix.parse("http://foo.pauldix.net").canonical, "net.pauldix.foo"
+      assert.equal domainatrix.parse("http://foo.bar.pauldix.net").canonical, "net.pauldix.bar.foo"
+      assert.equal domainatrix.parse("http://pauldix.co.uk").canonical, "uk.co.pauldix"
+
+    it "parses into a Url object", ->
+      assert.instanceOf domainatrix.parse("http://google.com"), Url
+
+
