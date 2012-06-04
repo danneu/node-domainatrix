@@ -92,7 +92,11 @@ class Url
 fileName = "#{__dirname}/effective_tld_names.dat"
 DOMAIN_PARSER = new DomainParser fileName
 
-parse = (url) -> new Url(DOMAIN_PARSER.parse(url))
-exports.parse = parse
-exports.test = {DomainParser, Url, urlParser}
+class Domainatrix
+  @parse: (url) -> new Url(DOMAIN_PARSER.parse(url))
+
+exports.parse = Domainatrix.parse
+exports.DomainParser = DomainParser
+exports.Url = Url
+exports.urlParser = urlParser
 

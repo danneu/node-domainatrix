@@ -1,7 +1,8 @@
 cl = console.log
 assert = require("chai").assert
-domainatrix = require "../domainatrix"
-{urlParser, DomainParser, Url} = domainatrix.test
+domainatrix = require("../domainatrix")
+DomainParser = require("../domainatrix").DomainParser
+Url = require("../domainatrix").Url
 
 describe "String methods", ->
   describe ".reverse()", ->
