@@ -1,6 +1,5 @@
 fs = require "fs"
 urlParser = require "url"
-Url = require "./url"
 
 class DomainParser
   constructor: (fileName) ->
@@ -70,14 +69,4 @@ class DomainParser
     domain: domain
     subdomain: subdomains.reverse().join(".")
 
-fileName = "#{__dirname}/effective_tld_names.dat"
-DOMAIN_PARSER = new DomainParser fileName
-
-class Domainatrix
-  @parse: (url) -> new Url(DOMAIN_PARSER.parse(url))
-
-exports.parse = Domainatrix.parse
-exports.DomainParser = DomainParser
-exports.Url = Url
-exports.urlParser = urlParser
-
+module.exportsDomainParser
