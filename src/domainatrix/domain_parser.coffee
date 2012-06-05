@@ -69,4 +69,4 @@ class DomainParser
     domain: domain
     subdomain: subdomains.reverse().join(".")
 
-module.exportsDomainParser
+module.exports = DomainParser

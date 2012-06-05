@@ -4,7 +4,7 @@
   "author": "Dan Neumann <danrodneu@gmail.com>",
   "description": "parses urls into their domain parts, canonical url, and public suffix domain using a comprehensive list (ported to JS from pauldix's Ruby Gem)",
   "scripts": {
-    "test": "vows --spec --isolate"
+    "test": "cake test"
   },
   "main": "./lib/domainatrix",
   "repository": {

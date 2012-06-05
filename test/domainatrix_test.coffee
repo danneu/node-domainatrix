@@ -1,8 +1,5 @@
-cl = console.log
-assert = require("chai").assert
-domainatrix = require("../domainatrix")
-DomainParser = require("../domainatrix").DomainParser
-Url = require("../domainatrix").Url
+domainatrix = require("../src/domainatrix")
+Url = require("../src/domainatrix/url")
 
 describe "String methods", ->
   describe ".reverse()", ->
@@ -11,22 +8,7 @@ describe "String methods", ->
     it "reverses the string at split given in", ->
       assert.equal "dot.com.co.uk".reverse("."), "uk.co.com.dot"
 
-describe "DomainParser", ->
-  fileName = "#{__dirname}/test.dat"
-  domainParser = new DomainParser fileName
-
-  describe ".readDatFile(fileName)", ->
-    it "generates the correct hash", ->
-      correctHash = 
-        "com": {} 
-        "biz": {"webhop": {}}
-        "us": {"pa": {"cc": {}}}
-        "fk": {"*": {}}
-        "jp": {"tokyo": {"!metro": {}}}
-      assert.deepEqual domainParser.readDatFile(fileName), correctHash
-
 describe "Domainatrix", ->
-
   describe ".parse(url)", ->
     it "has all its necessary properties", ->
       url = "http://user:pass@foo.bar.lol.pauldiz.co.uk:3000/a/b/c/index.html?q=arg&hello=world"
