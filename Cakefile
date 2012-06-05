@@ -2,6 +2,14 @@
 
 REPORTER = "min"
 
+task "compile", "compile src coffee into lib js and copy over .dat file", ->
+  exec "coffee -cbo lib src", (err) ->
+    throw err if err
+    console.log "-> coffeescript compiled."
+  exec "cp src/effective_tld_names.dat lib", (err) ->
+    throw err if err
+    console.log "-> .dat copied."
+
 task "test", "run tests", ->
   exec "NODE_ENV=test 
     ./node_modules/.bin/mocha 
