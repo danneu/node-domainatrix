@@ -1,5 +1,7 @@
 # Domainatrix
 
+This is a port of Paul Dix's [Domainatrix](https://github.com/pauldix/domainatrix) Ruby gem.
+
 Work in progress.
 
 I haven't made it into an NPM module yet, but:
